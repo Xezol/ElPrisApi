@@ -4,6 +4,6 @@ namespace ElPrisApi.Interfaces
 {
     public interface IPriceService
     {
-        Task<List<Price>> GetPricesForTodayAsync(string priceClass);
+        Task<PriceSummary> GetPricesForTodayAsync(Area area);
     }
 }

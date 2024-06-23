@@ -7,7 +7,7 @@ namespace ElPrisApi.Constants
         public static readonly JsonSerializerOptions DefaultJsonSerializerOptions = new()
         {
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-            WriteIndented = true // You can add other options as needed
+            WriteIndented = true
         };
     }
 

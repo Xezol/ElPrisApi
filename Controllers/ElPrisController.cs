@@ -1,4 +1,6 @@
+using ElPrisApi.Helpers;
 using ElPrisApi.Interfaces;
+using ElPrisApi.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ElPrisApi.Controllers
@@ -18,16 +20,16 @@ namespace ElPrisApi.Controllers
         }
 
         [HttpGet(Name = "Get Elpris by El område")]
-        public async Task<IActionResult> GetPrices(string elOmrade)
+        public async Task<IActionResult> GetPrices([ModelBinder(BinderType = typeof(AreaBinder))] Area area)
         {
             try
             {
-                var prices = await _priceService.GetPricesForTodayAsync(elOmrade);
-                if (prices == null || prices.Count == 0)
+                var priceSummary = await _priceService.GetPricesForTodayAsync(area);
+                if (priceSummary.Prices == null || priceSummary.Prices.Count == 0)
                 {
                     return NotFound("No prices found for the specified date and price class.");
                 }
-                return Ok(prices);
+                return Ok(priceSummary);
             }
             catch (HttpRequestException ex)
             {

@@ -1,6 +1,22 @@
 @ElPrisApi_HostAddress = http://localhost:5023
 
-GET {{ElPrisApi_HostAddress}}/weatherforecast/
+GET {{ElPrisApi_HostAddress}}/ElPris?area=SE2
 Accept: application/json
 
 ###
+GET {{ElPrisApi_HostAddress}}/ElPris?area=1
+Accept: application/json
+
+
+###
+GET {{ElPrisApi_HostAddress}}/healthy
+Accept: application/json
+
+###
+GET {{ElPrisApi_HostAddress}}/healthy/self
+Accept: application/json
+
+
+###
+GET {{ElPrisApi_HostAddress}}/healthy/underlying-api
+Accept: application/json

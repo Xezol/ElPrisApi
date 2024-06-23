@@ -1,4 +1,6 @@
-﻿namespace ElPrisApi.Models
+﻿using System.Text.Json.Serialization;
+
+namespace ElPrisApi.Models
 {
 
     /// <summary>
@@ -13,11 +15,19 @@
     /// </summary>
     public class Price
     {
+        [JsonPropertyName("SEK_per_kWh")]
         public double SEK_per_kWh { get; set; }
-        public double EUR_per_kWh { get; set; }
-        public double EXR { get; set; }
-        public DateTimeOffset time_start { get; set; }
-        public DateTimeOffset time_end { get; set; }
 
+        [JsonPropertyName("EUR_per_kWh")]
+        public double EUR_per_kWh { get; set; }
+
+        [JsonPropertyName("EXR")]
+        public double EXR { get; set; }
+
+        [JsonPropertyName("time_start")]
+        public DateTimeOffset time_start { get; set; }
+
+        [JsonPropertyName("time_end")]
+        public DateTimeOffset time_end { get; set; }
     }
 }
