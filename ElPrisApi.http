@@ -1,10 +1,10 @@
 @ElPrisApi_HostAddress = http://localhost:5023
 
-GET {{ElPrisApi_HostAddress}}/ElPris?area=SE2
+GET {{ElPrisApi_HostAddress}}/ElPris/GetElprisByArea?area=SE2
 Accept: application/json
 
 ###
-GET {{ElPrisApi_HostAddress}}/ElPris?area=1
+GET {{ElPrisApi_HostAddress}}/ElPris/GetElprisByArea?area=1
 Accept: application/json
 
 
@@ -20,3 +20,19 @@ Accept: application/json
 ###
 GET {{ElPrisApi_HostAddress}}/healthy/underlying-api
 Accept: application/json
+
+
+###
+GET {{ElPrisApi_HostAddress}}/healthy/tablestorage
+Accept: application/json
+
+
+
+### Check inside 
+GET {{ElPrisApi_HostAddress}}/elpris/GetPriceByGps?latitude=66.56226014524397&longitude=15.544401275199407
+
+
+
+### Check outsided returns info 
+GET {{ElPrisApi_HostAddress}}/elpris/GetPriceByGps?latitude=66.59226014524397&longitude=14.444401275199407
+

@@ -74,6 +74,7 @@ namespace ElPrisApi.Services
 
             return new PriceSummary
             {
+                Area = area.ToString(),
                 Prices = prices,
                 AveragePrice = averagePrice,
                 HighestPrice = highestPrice,

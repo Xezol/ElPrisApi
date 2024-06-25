@@ -20,6 +20,7 @@ builder.Services.AddSingleton(typeof(ITableStorageService<>), typeof(TableStorag
 
 // Register the custom health check for Table Storage
 builder.Services.AddSingleton<TableStorageHealthCheck>();
+builder.Services.AddSingleton<GpsCoordinateChecker>();
 
 // Add health checks
 string? baseUrl = builder.Configuration["ApiSettings:BaseUrl"];
@@ -68,7 +69,7 @@ app.MapHealthChecks("/healthy/self", new HealthCheckOptions
     Predicate = check => check.Name == "self",
     ResponseWriter = HealthCheckResponseWriters.WriteJsonResponse
 });
-app.MapHealthChecks("/healthy/table", new HealthCheckOptions
+app.MapHealthChecks("/healthy/tablestorage", new HealthCheckOptions
 {
     Predicate = check => check.Name == "TableStorage",
     ResponseWriter = HealthCheckResponseWriters.WriteJsonResponse
