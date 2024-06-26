@@ -1,6 +1,6 @@
 @ElPrisApi_HostAddress = http://localhost:5023
 
-GET {{ElPrisApi_HostAddress}}/ElPris/GetElprisByArea?area=SE2
+GET {{ElPrisApi_HostAddress}}/ElPris/GetElprisByArea?area=SE3
 Accept: application/json
 
 ###

@@ -1,14 +1,14 @@
-﻿using Azure.Data.Tables;
-using Common.Interfaces;
+﻿using Common.Interfaces;
+using Common.Models;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 
 namespace Common.HealthCheck
 {
     public class TableStorageHealthCheck : IHealthCheck
     {
-        private readonly ITableBlobStorageFor<TableEntity> _tableBlobStorageFor;
+        private readonly ITableBlobStorageFor<Prices> _tableBlobStorageFor;
 
-        public TableStorageHealthCheck(ITableBlobStorageFor<TableEntity> tableBlobStorageFor)
+        public TableStorageHealthCheck(ITableBlobStorageFor<Prices> tableBlobStorageFor)
         {
             _tableBlobStorageFor = tableBlobStorageFor ?? throw new ArgumentNullException(nameof(tableBlobStorageFor));
         }
