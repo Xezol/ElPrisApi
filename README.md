@@ -17,6 +17,7 @@ Returns:
 
 ```
 {
+  "Area" : "SE1",
   "averagePrice": 0.24180624999999997,
   "highestPrice": 0.41423,
   "lowestPrice": 0.00101,
@@ -44,6 +45,35 @@ Returns:
 
 ## Get Elrpis for GPS coordinate 
 Checks whether a gps coordinate is within one of the 4 areas in sweden and return price information for that gps coordinate
+
+Returns: 
+
+```
+{
+  "Area" : "SE1",
+  "averagePrice": 0.24180624999999997,
+  "highestPrice": 0.41423,
+  "lowestPrice": 0.00101,
+  "prices": 
+  [
+    {
+      "SEK_per_kWh": 0.34742,
+      "EUR_per_kWh": 0.03089,
+      "EXR": 11.246989,
+      "time_start": "2024-06-22T22:00:00+00:00",
+      "time_end": "2024-06-22T23:00:00+00:00"
+    },
+    {
+      "SEK_per_kWh": 0.33955,
+      "EUR_per_kWh": 0.03019,
+      "EXR": 11.246989,
+      "time_start": "2024-06-22T23:00:00+00:00",
+      "time_end": "2024-06-23T00:00:00+00:00"
+    }
+  ]
+}
+ 
+```
 
 
 ## Healthchecks 

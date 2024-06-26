@@ -1,7 +1,10 @@
+using Azure.Messaging.ServiceBus;
+using Common.HealthCheck;
+using Common.Interfaces;
+using Common.Models;
+using Common.Services;
 using ElPrisApi;
 using ElPrisApi.Helpers;
-using ElPrisApi.Interfaces;
-using ElPrisApi.Models;
 using ElPrisApi.Services;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
@@ -13,13 +16,28 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.Configure<ApiSettings>(builder.Configuration.GetSection("ApiSettings"));
-builder.Services.Configure<TableStorageSettings>(builder.Configuration.GetSection("TableStorageSettings"));
-builder.Services.AddHttpClient<IPriceService, PriceService>();
+builder.Services.AddHttpClient<IPriceApiFetcher, PriceApiFetcher>();
 
-builder.Services.AddSingleton(typeof(ITableStorageService<>), typeof(TableStorageService<>));
+builder.Services.AddSingleton<ServiceBusClient>(provider =>
+{
+    var configuration = provider.GetRequiredService<IConfiguration>();
+    return new ServiceBusClient(configuration.GetConnectionString("ServiceBusConnectionString"));
+});
+builder.Services.AddSingleton<IPriceService, PriceService>(provider =>
+{
+    var configuration = provider.GetRequiredService<IConfiguration>();
+    var priceApiFetcher = provider.GetRequiredService<IPriceApiFetcher>();
+    var priceStorage = provider.GetRequiredService<ITableBlobStorageFor<Prices>>();
+    var serviceBusClient = provider.GetRequiredService<ServiceBusClient>();
+    string baseUrl = configuration["ApiSettings:BaseUrl"];
+    string queueName = configuration["ServiceBusSettings:QueueName"];
+    return new PriceService(priceApiFetcher, priceStorage, serviceBusClient, baseUrl, queueName);
+});
 
-// Register the custom health check for Table Storage
-builder.Services.AddSingleton<TableStorageHealthCheck>();
+builder.Services.AddSingleton<ITableBlobStorageFor<Prices>>(provider =>
+    new TableBlobStorageFor<Prices>(nameof(Prices), provider.GetRequiredService<IConfiguration>().GetConnectionString("StorageConnectionString") ?? "UseDevelopmentStorage=true"));
+
+
 builder.Services.AddSingleton<GpsCoordinateChecker>();
 
 // Add health checks

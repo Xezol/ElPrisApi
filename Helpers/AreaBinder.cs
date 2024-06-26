@@ -1,4 +1,4 @@
-﻿using ElPrisApi.Models;
+﻿using Common.Models;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace ElPrisApi.Helpers

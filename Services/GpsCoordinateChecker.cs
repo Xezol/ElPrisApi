@@ -1,4 +1,5 @@
-﻿using ElPrisApi.Helpers;
+﻿using Common.Models;
+using ElPrisApi.Helpers;
 using ElPrisApi.Models;
 
 namespace ElPrisApi.Services

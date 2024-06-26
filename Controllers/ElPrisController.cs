@@ -1,6 +1,6 @@
+using Common.Interfaces;
+using Common.Models;
 using ElPrisApi.Helpers;
-using ElPrisApi.Interfaces;
-using ElPrisApi.Models;
 using ElPrisApi.Services;
 using Microsoft.AspNetCore.Mvc;
 

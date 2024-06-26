@@ -1,4 +1,6 @@
-﻿namespace ElPrisApi.Models
+﻿using Common.Models;
+
+namespace ElPrisApi.Models
 {
     public class Polygon
     {
