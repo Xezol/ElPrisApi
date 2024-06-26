@@ -145,3 +145,7 @@ The function is timertriggered where one can decide the sceduel from the appsett
 
 ### UpdatePriceQueueListenerFunction
 Listenes to the queue specified in the appsettings field PriceUpdateQueueName and fetches electricalprices for all areas for the current date from the BaseUrl appsettings api and saves to azure tablestorage specified in AzureWebJobsStorage appsettings. 
+
+
+### HealthCheckPingerFunction
+A healthchecker that takes urls from config file and pings. Also reports to discord hook entered in config if service responds with 502.
