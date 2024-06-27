@@ -50,7 +50,7 @@ namespace ElPrisApi.Controllers
 
                 if (priceSummary.Prices == null || priceSummary.Prices.Count == 0)
                 {
-                    return NotFound("No prices found for the specified date and price class.");
+                    return NotFound("No prices found for the specified date and area.");
                 }
 
                 return Ok(priceSummary);
